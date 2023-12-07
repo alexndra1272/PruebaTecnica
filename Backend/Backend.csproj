@@ -26,10 +26,12 @@
     <None Remove="Data\" />
     <None Remove="Data\Models\" />
     <None Remove="Controllers\" />
+    <None Remove="Repository\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Data\Models\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Repository\" />
   </ItemGroup>
 </Project>
