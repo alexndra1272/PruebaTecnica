@@ -10,9 +10,29 @@ namespace Backend.Data
 			: base(options)
 		{
 		}
-		public DbSet<Factura> Facturas { get; set; } = null!;
+
 		public DbSet<Persona> Personas { get; set; } = null!;
-		
-	}
+		public DbSet<Factura> Factura { get; set; } = null!;
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Persona>()
+				.HasKey(p => p.IdPersona);
+
+
+            modelBuilder.Entity<Factura>()
+                .HasKey(f => f.IdFactura); 
+				
+			modelBuilder.Entity<Persona>()
+				.HasMany(p => p.Factura)  
+				.WithOne(f => f.Persona)
+				.HasForeignKey(f => f.IdPersona)
+				.OnDelete(DeleteBehavior.Cascade);
+
+        }
+
+
+    }
 }
 
