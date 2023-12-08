@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="src\img\cerrar.png" />
+    <None Remove="src\img\facturaIcon.png" />
+    <None Remove="src\img\min.png" />
+    <None Remove="src\img\userIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="src\img\cerrar.png" />
+    <Resource Include="src\img\facturaIcon.png" />
+    <Resource Include="src\img\min.png" />
+    <Resource Include="src\img\userIcon.png" />
+  </ItemGroup>
+
+</Project>
