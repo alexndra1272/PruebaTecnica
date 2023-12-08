@@ -27,11 +27,13 @@
     <None Remove="Data\Models\" />
     <None Remove="Controllers\" />
     <None Remove="Repository\" />
+    <None Remove="UnitofWork\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Data\Models\" />
     <Folder Include="Controllers\" />
     <Folder Include="Repository\" />
+    <Folder Include="UnitofWork\" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 ﻿using Backend.Data;
 using Microsoft.EntityFrameworkCore;
+using Backend.UnitofWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,11 @@ builder.Services.AddDbContext<ApiDbContext>(options =>
 });
 
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
