@@ -24,5 +24,12 @@ namespace Frontend.Views
         {
             InitializeComponent();
         }
+
+        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            CrudPersona ventana = new CrudPersona();
+            FramePersona.Content = ventana;
+        }
+        
     }
 }

@@ -141,7 +141,8 @@
                             Margin="10, 0, 0, 0"
                             Width="100"
                             x:Name="BtnAgregar"
-                            HorizontalAlignment="Left">
+                            HorizontalAlignment="Left"
+                            Click="BtnAgregar_Click">
                 <TextBlock Text="Agregar" 
                            Foreground="White"
                            FontSize="15"
@@ -190,6 +191,13 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <!--#endregion-->
+            <!--Region Frame-->
+            <Frame x:Name="FramePersona"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="6"
+                   Grid.RowSpan="8"/>
             <!--#endregion-->
         </Grid>
     </Border>

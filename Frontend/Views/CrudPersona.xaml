@@ -7,8 +7,116 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CrudPersona">
-
-    <Grid>
-        
-    </Grid>
+    <Border Background="#e3f3f3"
+            CornerRadius="10">
+        <Grid>
+            <!--Region Col y rows-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            <!--Region Titulo-->
+            <TextBlock Text="Insertar Nueva Persona"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="5"
+                        FontSize="25"
+                        FontWeight="DemiBold" />
+            <!--#endregion-->
+            <!--Region Btn Cancelar-->
+            <Button Grid.Column="1"
+                    Grid.Row="11"
+                    Background="RosyBrown"
+                    BorderBrush="RosyBrown"
+                    x:Name="BtnCancelar"
+                    Height="30"
+                    Width="130"
+                    Click="BtnCancelar_Click">
+                <TextBlock Text="Cancelar" 
+                        Foreground="White"
+                        FontSize="15"
+                        FontWeight="DemiBold"/>
+            </Button>
+            <!--#endregion-->
+            <!--Region form-->
+            <TextBlock Grid.Row="4"
+                       Grid.Column="1"
+                       Text="Nombres:"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       FontWeight="DemiBold"/>
+            <TextBox Grid.Row="4"
+                     Grid.Column="2"
+                     x:Name="tboxName"/>
+            <TextBlock Grid.Row="6"
+                   Grid.Column="1"
+                   Text="Apellido Paterno:"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   FontWeight="DemiBold"/>
+            <TextBox Grid.Row="6"
+                     Grid.Column="2"
+                     x:Name="tboxApPat"/>
+            <TextBlock Grid.Row="8"
+                   Grid.Column="1"
+                   Text="Apellido Materno:"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   FontWeight="DemiBold"/>
+            <TextBox Grid.Row="8"
+                    Grid.Column="2"
+                    x:Name="tboxApMat"/>
+            <TextBlock Grid.Row="10"
+                   Grid.Column="1"
+                   Text="Identificación:"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   FontWeight="DemiBold"/>
+            <TextBox Grid.Row="10"
+                Grid.Column="2"
+                x:Name="tboxid"/>
+            <!--#endregion-->
+            <!--Region boton agregar-->
+            <Button Background="#65bafb" 
+                    BorderBrush="#65bafb"
+                    Grid.Column="2"
+                    Grid.Row="11"
+                    Height="30"
+                    Width="130">
+                <TextBlock Text="Agregar" 
+                    Foreground="White"
+                    FontSize="15"
+                    FontWeight="DemiBold"/> 
+            </Button>
+            <!--#endregion-->
+        </Grid>
+    </Border>
+    
 </Page>
