@@ -8,11 +8,15 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private readonly ApiDbContext _context;
 
     public IPersonaRepository Personas { get; private set; }
+    public IFacturaRepository Facturas { get; private set; }
 
-    public UnitOfWork(ApiDbContext context, ILogger<PersonaRepository> logger)
+    public UnitOfWork(ApiDbContext context, ILogger<PersonaRepository> logger, ILogger<FacturaRepository> logger2)
     {
         _context = context;
         Personas = new PersonaRepository(_context, logger);
+        Facturas = new FacturaRepository(_context, logger2);
+
+        
     }
 
     public async Task CompleteAsync()
