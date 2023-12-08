@@ -20,15 +20,33 @@ namespace Frontend.Views
     /// </summary>
     public partial class Persona : UserControl
     {
+        HttpClient client = new HttpClient();
         public Persona()
         {
+            client.BaseAddress = new Uri("https://localhost:44315/api/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json")
+            );
+
             InitializeComponent();
+            cargarPersonas();
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
             CrudPersona ventana = new CrudPersona();
             FramePersona.Content = ventana;
+        }
+        void cargarPersonas()
+        {
+            HttpResponseMessage response = client.GetAsync("persona").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var data = response.Content.ReadAsStringAsync().Result;
+                var personas = JsonConvert.DeserializeObject<List<Persona>>(data);
+                dgPersonas.ItemsSource = personas;
+            }
         }
         
     }

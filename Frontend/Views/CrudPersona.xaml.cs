@@ -20,14 +20,32 @@ namespace Frontend.Views
     /// </summary>
     public partial class CrudPersona : Page
     {
+        HttpClient client = new HttpClient();
         public CrudPersona()
         {
+
             InitializeComponent();
+            client.BaseAddress = new Uri("https://localhost:44315/api/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json")
+            );
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
             Content = new Persona();
         }
+        private void loadPersonas()
+        {
+            HttpResponseMessage response = client.GetAsync("persona").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var data = response.Content.ReadAsStringAsync().Result;
+                var personas = JsonConvert.DeserializeObject<List<Persona>>(data);
+                dgPersonas.ItemsSource = personas;
+            }
+        }
+
     }
 }
