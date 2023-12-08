@@ -1,6 +1,8 @@
 ﻿using System;
 using Backend.Data.Models;
 using Backend.Data;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Backend.Repository;
 
@@ -13,6 +15,7 @@ public class FacturaRepository : GenericRepository<Factura>, IFacturaRepository
 		: base(context, logger)
 	{
 	}
+
 
 }
 
