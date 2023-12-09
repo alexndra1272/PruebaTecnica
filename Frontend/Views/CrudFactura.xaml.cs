@@ -109,8 +109,8 @@ namespace Frontend.Views
             // Crear objeto Factura
             var factura = new Facturas
             {
-                Fecha = DateTime.Now,
-                Monto = Convert.ToDecimal(txtMonto.Text),
+                Fecha = Fecha.SelectedDate ?? DateTime.Now,
+                Monto = Convert.ToDecimal(tboxMonto.Text),
                 IdPersona = ObtenerIdPersonaSeleccionada()
             };
 

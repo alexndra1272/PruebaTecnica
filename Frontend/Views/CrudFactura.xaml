@@ -74,7 +74,7 @@
             <TextBox Grid.Row="8"
                      PreviewTextInput="txtNumero_PreviewTextInput"
                  Grid.Column="2"
-                 x:Name="tboxFecha"/>
+                 x:Name="tboxMonto"/>
 
             <TextBlock Grid.Row="6"
                Grid.Column="1"

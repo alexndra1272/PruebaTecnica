@@ -12,6 +12,7 @@ namespace Frontend.models
         public DateTime Fecha { get; set; }
         public decimal Monto { get; set; }
         public String NombrePersona { get; set; }
-        
+        public int IdPersona { get; set; }
+
     }
 }
