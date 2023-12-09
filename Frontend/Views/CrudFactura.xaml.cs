@@ -88,7 +88,18 @@ namespace Frontend.Views
             // En caso de que no haya una persona seleccionada, puedes devolver un valor predeterminado o lanzar una excepción según tus necesidades.
             throw new InvalidOperationException("No se ha seleccionado ninguna persona.");
         }
+        private void txtNumero_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            string newText = (sender as TextBox)?.Text + e.Text;
 
+            // Verificar si el texto de entrada cumple con las restricciones
+            if (!newText.All(char.IsDigit))
+            {
+                e.Handled = true; // Cancelar la entrada si no cumple con las restricciones
+            }
+        }
+
+        
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
             Content = new Factura();

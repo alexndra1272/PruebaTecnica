@@ -72,6 +72,7 @@
                    FontSize="20"
                    FontWeight="DemiBold"/>
             <TextBox Grid.Row="8"
+                     PreviewTextInput="txtNumero_PreviewTextInput"
                  Grid.Column="2"
                  x:Name="tboxFecha"/>
 
