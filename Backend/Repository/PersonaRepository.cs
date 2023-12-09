@@ -23,11 +23,11 @@ namespace Backend.Repository
         {
             try
             {
-                return await dbSet.FirstOrDefaultAsync(p => p.Identificacion == identificacion || p.Nombre == nombre);
+                return await dbSet.Where(p => EF.Functions.Like(p.Identificacion, $"%{identificacion}%") || EF.Functions.Like(p.Nombre, $"%{nombre}%")).ToListAsync();
             }
             catch (Exception ex)
             {
-                logger.LogError($"Error al obtener el registro con identificacion {identificacion} o nombre {nombre} de {typeof(Persona).Name}: {ex.Message}");
+                logger.LogError($"Error al obtener el registro con identificacion o nombre {identificacion} de {typeof(Persona).Name}: {ex.Message}");
                 return null;
             }
         }
