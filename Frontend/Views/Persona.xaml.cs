@@ -67,9 +67,10 @@ namespace Frontend.Views
 
             ventana.tboxid.IsEnabled = false;
 
-            // Asignar el evento al botón de guardar
-            
+            // Hacer visible el botón de actualizar
+            ventana.BtnActualizar.Visibility = Visibility.Visible;
 
+            
 
         }
         void cargarPersonas()
