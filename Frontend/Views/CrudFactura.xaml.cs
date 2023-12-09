@@ -106,7 +106,27 @@ namespace Frontend.Views
         }
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-           
+            // Crear objeto Factura
+            var factura = new Facturas
+            {
+                Fecha = DateTime.Now,
+                Monto = Convert.ToDecimal(txtMonto.Text),
+                IdPersona = ObtenerIdPersonaSeleccionada()
+            };
+
+            // Llamada a la API
+            HttpResponseMessage response = client.PostAsJsonAsync("factura", factura).Result;
+
+            // Verificar si la respuesta es exitosa
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Factura agregada correctamente.");
+                Content = new Factura();
+            }
+            else
+            {
+                MessageBox.Show("Error al agregar la factura.");
+            }
         }
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
