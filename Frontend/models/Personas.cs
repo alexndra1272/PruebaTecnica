@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Frontend.models
 {
-    public class Persona
+    public class Personas
     {
         public int IdPersona { get; set; }
         public string Nombre { get; set; }

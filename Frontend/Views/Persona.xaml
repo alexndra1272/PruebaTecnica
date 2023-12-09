@@ -72,6 +72,20 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
 
         </Style>
+        <Style TargetType="{x:Type DataGridCell}">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="Blue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Border CornerRadius="0, 0, 10, 10"
             Background="#e3f3f3">
@@ -151,46 +165,44 @@
             <!--#endregion-->
             <!--DATAGRID-->
             <DataGrid Grid.Row="4"
-                      Grid.Column="1"
-                      Grid.RowSpan="2"
-                      Grid.ColumnSpan="4"
-                      x:Name="DatosPersona"
-                      AutoGenerateColumns="False"
-                      Background="GhostWhite"
-                      Foreground="#239cfa"
-                      FontSize="15"
-                      CanUserAddRows="False"
-                      CanUserResizeColumns="True"
-                      CanUserResizeRows="False"
-                      CanUserSortColumns="False"
-                      RowBackground="Transparent"
-                      HeadersVisibility="Column"
-                      GridLinesVisibility="Horizontal"
-                      HorizontalGridLinesBrush="#65bafb"
-                      >
+          Grid.Column="1"
+          Grid.RowSpan="2"
+          Grid.ColumnSpan="4"
+          x:Name="DatosPersona"
+          AutoGenerateColumns="False"
+          Background="GhostWhite"
+          Foreground="#239cfa"
+          FontSize="15"
+          CanUserAddRows="False"
+          CanUserResizeColumns="True"
+          CanUserResizeRows="False"
+          CanUserSortColumns="False"
+          RowBackground="Transparent"
+          HeadersVisibility="Column"
+          GridLinesVisibility="Horizontal"
+          HorizontalGridLinesBrush="#65bafb"
+          >
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Id"
-                                            Width="50"/>
-                    <DataGridTemplateColumn Header="Nombre"
-                        Width="220"/>
-                    <DataGridTemplateColumn Header="Apellido Paterno"
-                        Width="190"/>
-                    <DataGridTemplateColumn Header="Apellido Materno"
-                        Width="190"/>
-                    <DataGridTemplateColumn Header="Identificación"
-                        Width="190"/>
-                    <DataGridTemplateColumn Header="Opciones"
-                        Width="110">
+                    <DataGridTextColumn Header="Id" Width="50" Binding="{Binding IdPersona}" />
+                    <DataGridTextColumn Header="Nombre" Width="220" Binding="{Binding Nombre}" />
+                    <DataGridTextColumn Header="Apellido Paterno" Width="190" Binding="{Binding ApellidPaterno}" />
+                    <DataGridTextColumn Header="Apellido Materno" Width="190" Binding="{Binding ApellidMaterno}" />
+                    <DataGridTextColumn Header="Identificación" Width="190" Binding="{Binding Identificacion}" />
+                    <DataGridTemplateColumn Header="Opciones" Width="110">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <DockPanel>
-                                    <!--CRUD-->
-                                </DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Editar"/>
+                                    <Button Content="Eliminar" />
+                                    <!-- Otros botones o elementos según tus necesidades -->
+                                </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+
+
             <!--#endregion-->
             <!--Region Frame-->
             <Frame x:Name="FramePersona"
