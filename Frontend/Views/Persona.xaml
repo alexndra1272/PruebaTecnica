@@ -132,20 +132,10 @@
                      Grid.Column="2"
                      Grid.Row="2"
                      FontSize="15"
+                        x:Name="TxtBuscar"
+                        TextChanged="TxtBuscar_TextChanged"
                      BorderBrush="#239cfa"/>
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="3"
-                    Grid.Row="2"
-                    Background="#91cdfd"
-                    BorderBrush="#91cdfd"
-                    Margin="10, 0, 0, 0"
-                    Width="100"
-                    x:Name="BtnBuscar"
-                    HorizontalAlignment="Left">
-                <TextBlock Text="Buscar" 
-                           Foreground="White"
-                           FontSize="15"
-                           FontWeight="DemiBold"/>
-            </Button>
+            
             <!--#endregion-->
             <!--Agregar usuarios-->
             <Button Style="{DynamicResource ButtonStyle}" Grid.Column="4"

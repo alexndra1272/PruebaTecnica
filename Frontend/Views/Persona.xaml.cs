@@ -114,5 +114,22 @@ namespace Frontend.Views
                 DatosPersona.ItemsSource = personas;
             }
         }
+        private void TxtBuscar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
+
+        // Consumir el método de búsqueda del backend
+        public void Buscar (string busqueda)
+        {
+            HttpResponseMessage response = client.GetAsync($"persona/{busqueda}").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var data = response.Content.ReadAsStringAsync().Result;
+                var personas = JsonConvert.DeserializeObject<List<Personas>>(data);
+                DatosPersona.ItemsSource = personas;
+            }
+            
+        }
     }
 }

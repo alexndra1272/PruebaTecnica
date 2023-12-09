@@ -27,19 +27,20 @@ namespace Backend.Controllers
             return Ok(personas);
         }
 
-        // GET: api/Persona/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Persona>> GetPersona(int id)
+        // GET: api/Persona/nameoridentificacion
+        [HttpGet("{identificacion}")]
+        public async Task<ActionResult<Persona>> GetPersona(string identificacion)
         {
-            var persona = await _unitOfWork.Personas.GetByIdAsync(id);
+            var persona = await _unitOfWork.Personas.GetPersonaByIdentificacionorNameAsync(identificacion, identificacion);
 
             if (persona == null)
             {
-                return NotFound();
+                return NotFound($"No se encontró la persona con identificación o nombre {identificacion}.");
             }
 
             return Ok(persona);
         }
+
 
         // PUT: api/Persona/5
         [HttpPut("{id}")]
