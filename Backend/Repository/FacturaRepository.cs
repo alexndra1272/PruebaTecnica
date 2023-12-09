@@ -25,7 +25,7 @@ public class FacturaRepository : GenericRepository<Factura>, IFacturaRepository
 		try
 		{
 			return await dbSet
-				.Include(f => f.Persona)
+				.Include(f => f.Persona) 
 				.ToListAsync();
 		}
 		catch (Exception ex)
@@ -34,6 +34,7 @@ public class FacturaRepository : GenericRepository<Factura>, IFacturaRepository
 			return new List<Factura>(); // Puedes devolver una lista vacía o manejar el error según sea necesario
 		}
 	}
+
 
 
 }
