@@ -86,7 +86,7 @@ namespace Backend.Controllers
                 return BadRequest();
             }
 
-            _unitOfWork.Facturas.Update(factura);
+            _unitOfWork.Facturas.UpdateAsync(factura);
 
             try
             {
@@ -105,8 +105,8 @@ namespace Backend.Controllers
             }
 
             return Ok($"Se actualizó la factura con ID {id}");
-        }
 
+        }
         // DELETE: api/Factura/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFactura(int id)
@@ -117,11 +117,13 @@ namespace Backend.Controllers
                 return NotFound();
             }
 
-            _unitOfWork.Facturas.Remove(factura);
+            _unitOfWork.Facturas.DeleteAsync(factura);
             await _unitOfWork.CompleteAsync();
 
             return Ok($"Se eliminó la factura con ID {id}");
+
+
         }
-        
+
     }
 }
