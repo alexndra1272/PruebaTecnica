@@ -79,12 +79,18 @@ namespace Frontend.Views
 
             // Asignar los valores a los campos
             ventana.tboxMonto.Text = factura.Monto.ToString();
-            ventana.Fecha.SelectedDate = factura.Fecha;
+            ventana.fechaInfo.Text = factura.Fecha.ToString();
             ventana.tboxMonto.Text = factura.Monto.ToString();
-            ventana.CboxPersona.Text = factura.NombrePersona;
+            ventana.personaInfo.Text = factura.NombrePersona.ToString();
 
             // Hacer visible el botón de eliminar
             ventana.BtnEliminar.Visibility = Visibility.Visible;
+
+
+            // hacer invisible el campo de la fecha
+            ventana.Fecha.Visibility = Visibility.Collapsed;
+            // Hacer invisible el campo de la persona
+            ventana.CboxPersona.Visibility = Visibility.Collapsed;
 
             // Deshabilitar los campos
             ventana.tboxMonto.IsEnabled = false;
