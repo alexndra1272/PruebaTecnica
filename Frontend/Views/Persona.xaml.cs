@@ -116,7 +116,20 @@ namespace Frontend.Views
         }
         private void TxtBuscar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            // Obtener el texto de búsqueda
+            var busqueda = ((TextBox)sender).Text;
+
+            // Verificar si el texto de búsqueda es vacío
+            if (busqueda == "")
+            {
+                // Cargar todas las personas
+                cargarPersonas();
+            }
+            else
+            {
+                // Buscar personas por nombre o identificación
+                Buscar(busqueda);
+            }
         }
 
         // Consumir el método de búsqueda del backend
@@ -129,7 +142,7 @@ namespace Frontend.Views
                 var personas = JsonConvert.DeserializeObject<List<Personas>>(data);
                 DatosPersona.ItemsSource = personas;
             }
-            
+
         }
     }
 }
