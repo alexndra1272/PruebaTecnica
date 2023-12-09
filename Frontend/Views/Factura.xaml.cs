@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using Frontend.models;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.ConstrainedExecution;
 
 
 
@@ -81,11 +82,14 @@ namespace Frontend.Views
             Facturas factura = (Facturas)DatosFactura.SelectedItem;
 
             // Asignar los valores a los campos
-            ventana.tboxNumero.Text = factura.Numero.ToString();
-            ventana.tboxFecha.Text = factura.Fecha.ToString();
+            ventana.tboxMonto.Text = factura.Monto.ToString();
+            ventana.Fecha.SelectedDate = factura.Fecha;
             ventana.tboxMonto.Text = factura.Monto.ToString();
             ventana.CboxPersona.Text = factura.NombrePersona;
 
+
+            // Hacer visible el botón de actualizar
+            ventana.BtnModificar.Visibility = Visibility.Visible;
 
         }
     }
