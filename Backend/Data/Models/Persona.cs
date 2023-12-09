@@ -1,20 +1,22 @@
-﻿using System;
+﻿
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 namespace Backend.Data.Models
 {
+
+    [Index(nameof(Identificacion), IsUnique = true)]
     public class Persona
     {
-        [ Required ]
+        [Required]
         public int IdPersona { get; set; }
-        [ Required ]
+        [Required]
         public string Nombre { get; set; }
-        [ Required ]
+        [Required]
         public string ApellidPaterno { get; set; }
 
         public string? ApellidMaterno { get; set; } = null!; //optional
 
-        [ Required ]
-        [ MaxLength(15) ]
-        [ Index(IsUnique = true) ]
+        [Required]
         public string Identificacion { get; set; }
 
 

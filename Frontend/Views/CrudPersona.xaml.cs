@@ -54,8 +54,8 @@ namespace Frontend.Views
             // Crear objeto persona
             Personas persona = new Personas();
             persona.Nombre = tboxName.Text;
-            persona.ApellidoPaterno = tboxApPat.Text;
-            persona.ApellidoMaterno = tboxApMat.Text;
+            persona.ApellidPaterno = tboxApPat.Text;
+            persona.ApellidMaterno = tboxApMat.Text;
             persona.Identificacion = tboxid.Text;
 
 

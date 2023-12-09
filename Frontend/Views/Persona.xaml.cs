@@ -12,7 +12,6 @@ namespace Frontend.Views
     public partial class Persona : UserControl
     {
         private readonly HttpClient client = new HttpClient();
-        private bool personasCargadas = false;  // Bandera para rastrear si las personas ya se cargaron
 
         public Persona()
         {
