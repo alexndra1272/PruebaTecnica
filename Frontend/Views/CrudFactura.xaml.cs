@@ -36,6 +36,10 @@ namespace Frontend.Views
     {
         private readonly HttpClient client = new HttpClient();
 
+        // idFactura
+        public int idFactura;
+
+
         public CrudFactura()
         {
             InitializeComponent();
