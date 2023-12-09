@@ -110,6 +110,12 @@ namespace Frontend.Views
         }
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
+            // Validar que los campos no estén vacíos
+            if (tboxMonto.Text == "" || Fecha.SelectedDate == null || CboxPersona.SelectedItem == null)
+            {
+                MessageBox.Show("Favor de llenar todos los campos");
+                return;
+            }
             // Crear objeto Factura
             var factura = new Facturas
             {
@@ -134,6 +140,35 @@ namespace Frontend.Views
         }
         private void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
+            // Validar que los campos no estén vacíos
+            if (tboxMonto.Text == "" || Fecha.SelectedDate == null || CboxPersona.SelectedItem == null)
+            {
+                MessageBox.Show("Favor de llenar todos los campos");
+                return;
+            }
+
+            // Crear objeto Factura
+            var factura = new Facturas
+            {
+                IdFactura = idFactura,
+                Fecha = Fecha.SelectedDate ?? DateTime.Now,
+                Monto = Convert.ToDecimal(tboxMonto.Text),
+                IdPersona = ObtenerIdPersonaSeleccionada()
+            };
+
+            // Llamada a la API
+            HttpResponseMessage response = client.PutAsJsonAsync("factura/" + factura.IdFactura, factura).Result;
+
+            // Verificar si la respuesta es exitosa
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Factura modificada correctamente.");
+                Content = new Factura();
+            }
+            else
+            {
+                MessageBox.Show("Error al modificar la factura.");
+            }
             
         }
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
