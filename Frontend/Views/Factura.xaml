@@ -199,7 +199,7 @@
 
             <!--#endregion-->
             <!--Region Frame-->
-            <Frame x:Name="FramePersona"
+            <Frame x:Name="FrameFactura"
                    Grid.Column="0"
                    Grid.Row="0"
                    Grid.ColumnSpan="6"

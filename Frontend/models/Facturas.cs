@@ -11,7 +11,7 @@ namespace Frontend.models
         public int IdFactura { get; set; }
         public DateTime Fecha { get; set; }
         public decimal Monto { get; set; }
-        public int IdPersona { get; set; }
+        public String NombrePersona { get; set; }
         
     }
 }
