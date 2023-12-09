@@ -173,7 +173,16 @@ namespace Frontend.Views
         }
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            Content = new Factura();
+            // Enviar al backend
+            var response = client.DeleteAsync("factura/" + idFactura).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Content = new Factura();
+            }
+            else
+            {
+                MessageBox.Show(response.StatusCode.ToString());
+            }
         }
 
     }

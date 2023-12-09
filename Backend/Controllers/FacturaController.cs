@@ -1,6 +1,7 @@
 using Backend.Data.Models;
 using Backend.UnitofWork;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers
 {
@@ -94,14 +95,7 @@ namespace Backend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await FacturaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok($"Se actualizó la factura con ID {id}");
@@ -117,7 +111,7 @@ namespace Backend.Controllers
                 return NotFound();
             }
 
-            _unitOfWork.Facturas.DeleteAsync(factura);
+            _unitOfWork.Facturas.DeleteAsync(factura.IdFactura);
             await _unitOfWork.CompleteAsync();
 
             return Ok($"Se eliminó la factura con ID {id}");
