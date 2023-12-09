@@ -26,18 +26,14 @@ namespace Backend.Controllers
             return Ok(facturas);
         }
 
-        // GET: api/Factura/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Factura>> GetFactura(int id)
+        // GET: api/Factura/searchTerm
+        [HttpGet("{searchTerm}")]
+        public async Task<ActionResult<IEnumerable<Factura>>> GetFacturasByPersona(string searchTerm)
         {
-            var factura = await _unitOfWork.Facturas.GetByIdAsync(id);
+            // Obtener las facturas con sus detalles
+            var facturas = await _unitOfWork.Facturas.GetFacturasByPersonaAsync(searchTerm);
 
-            if (factura == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(factura);
+            return Ok(facturas);
         }
 
         // POST: api/Factura

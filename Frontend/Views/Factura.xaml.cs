@@ -48,7 +48,18 @@ namespace Frontend.Views
         }
         private void TxtBuscarFact_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Llamada a la API
+            HttpResponseMessage response = client.GetAsync($"factura/{TxtBuscarFact.Text}").Result;
+            // Verificar si la respuesta es exitosa
+            if (response.IsSuccessStatusCode)
+            {
+                // Obtener los datos del API y asignarlos a la propiedad Items
+                var facturas = response.Content.ReadAsAsync<IEnumerable<Facturas>>().Result;
+                // Asignar los datos en el DataGrid
+                DatosFactura.ItemsSource = facturas;
+            }
 
+            
         }
 
         private void BtnAgregarFact_Click(object sender, RoutedEventArgs e)
@@ -96,7 +107,7 @@ namespace Frontend.Views
             ventana.tboxMonto.IsEnabled = false;
             ventana.Fecha.IsEnabled = false;
             ventana.CboxPersona.IsEnabled = false;
-            
+
         }
         private void BtnEditarFact_Click(object sender, RoutedEventArgs e)
         {
