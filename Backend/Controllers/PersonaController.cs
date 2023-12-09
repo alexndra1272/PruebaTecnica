@@ -105,26 +105,26 @@ namespace Backend.Controllers
             }
         }
 
-        // DELETE: api/Persona/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePersona(int id)
+        // DELETE: api/Persona/identificacion
+        [HttpDelete("{identificacion}")]
+        public async Task<ActionResult<Persona>> DeletePersona(string identificacion)
         {
             try
             {
-                // Intentar eliminar el registro
-                var deleteResult = await _unitOfWork.Personas.DeleteAsync(id);
+                // Intentar eliminar la entidad
+                var deleteResult = await _unitOfWork.Personas.DeletePersonaByIdentificacion(identificacion);
 
                 // Verificar si la eliminación fue exitosa
-                if (!deleteResult)
+                if (deleteResult == null)
                 {
-                    return NotFound($"No se encontró la persona con ID {id}.");
+                    return NotFound($"No se encontró la persona con identificación {identificacion}.");
                 }
 
                 // Intentar completar la transacción en la unidad de trabajo
                 await _unitOfWork.CompleteAsync();
 
                 // Devolver una respuesta exitosa
-                return Ok($"Persona con ID {id} eliminada exitosamente.");
+                return Ok($"Persona con identificación {identificacion} eliminada exitosamente.");
             }
             catch (Exception ex)
             {
@@ -133,6 +133,5 @@ namespace Backend.Controllers
                 return BadRequest($"Error al eliminar la persona: {ex.Message}");
             }
         }
-
     }
 }
