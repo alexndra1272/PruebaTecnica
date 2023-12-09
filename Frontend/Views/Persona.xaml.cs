@@ -32,6 +32,9 @@ namespace Frontend.Views
             // Mostrar ventana de agregar persona
             CrudPersona ventana = new CrudPersona();
             FramePersona.Content = ventana;
+
+            // Hacer visible el botón de guardar
+            ventana.BtnGuardar.Visibility = Visibility.Visible;
         }
         private void Persona_Loaded(object sender, RoutedEventArgs e)
         {
@@ -43,6 +46,8 @@ namespace Frontend.Views
         {
             // Obtener el id de la persona seleccionada
             var id = ((Button)sender).CommandParameter.ToString();
+            // Asignar el id a la variable global
+            idPersona = Int32.Parse(id);
 
             // Mostrar ventana de editar persona
             CrudPersona ventana = new CrudPersona();
@@ -61,6 +66,8 @@ namespace Frontend.Views
             // Deshabilitar el campo de identificación
 
             ventana.tboxid.IsEnabled = false;
+
+            // Asignar el evento al botón de guardar
             
 
 

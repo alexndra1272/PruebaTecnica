@@ -25,6 +25,8 @@ namespace Frontend.Views
     {
 
         HttpClient client = new HttpClient();
+        // id de la persona a editar
+        public int idPersona;
         public CrudPersona()
         {
 

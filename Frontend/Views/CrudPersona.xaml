@@ -111,12 +111,16 @@
                     Grid.Row="11"
                     Height="30"
                     Width="130"
-                    Click="BtnGuardar_Click">
+                    Click="BtnGuardar_Click"
+                    x:Name="BtnGuardar"
+                    Visibility="Collapsed"
+                    >
                 <TextBlock Text="Agregar" 
                     Foreground="White"
                     FontSize="15"
                     FontWeight="DemiBold"/> 
             </Button>
+
             <!--#endregion-->
         </Grid>
     </Border>
