@@ -24,5 +24,23 @@ namespace Frontend.Views
         {
             InitializeComponent();
         }
+
+        private void TxtBuscarFact_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void BtnAgregarFact_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void BtnEliminarFact_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void BtnEditarFact_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

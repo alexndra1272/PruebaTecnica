@@ -36,5 +36,10 @@ namespace Frontend
         {
             DataContext = new Persona();
         }
+
+        private void FacturasView(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Factura();
+        }
     }
 }

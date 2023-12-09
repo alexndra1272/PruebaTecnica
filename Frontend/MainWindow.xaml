@@ -77,7 +77,7 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"
                             BorderBrush="Transparent"
-                            Cursor="Hand">
+                            Cursor="Hand" Click="FacturasView">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="25" />

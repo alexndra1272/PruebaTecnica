@@ -190,7 +190,6 @@
                                             Click="BtnEliminar_Click"
                                             CommandParameter="{Binding Identificacion}"
                                     />
-                                    <!-- Otros botones o elementos según tus necesidades -->
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
