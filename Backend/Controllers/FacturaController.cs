@@ -40,42 +40,88 @@ namespace Backend.Controllers
         }
 
         // POST: api/Factura
-[HttpPost]
-public async Task<ActionResult<Factura>> PostFactura(Factura factura)
-{
-    try
-    {
-        // Buscamos el cliente
-        var persona = await _unitOfWork.Personas.GetByIdAsync(factura.IdPersona);
-
-        // Verificamos si existe el cliente
-        if (persona == null)
+        [HttpPost]
+        public async Task<ActionResult<Factura>> PostFactura(Factura factura)
         {
-            return BadRequest($"No existe el cliente con ID {factura.IdPersona}");
+            try
+            {
+                // Buscamos el cliente
+                var persona = await _unitOfWork.Personas.GetByIdAsync(factura.IdPersona);
+
+                // Verificamos si existe el cliente
+                if (persona == null)
+                {
+                    return BadRequest($"No existe el cliente con ID {factura.IdPersona}");
+                }
+
+                // Asignar la persona a la factura
+                factura.Persona = persona;
+
+                // Agregamos la factura
+                var facturaAgregada = await _unitOfWork.Facturas.AddAsync(factura);
+
+                if (facturaAgregada == null)
+                {
+                    return BadRequest("Error al agregar la factura.");
+                }
+
+                // Intentamos guardar los cambios
+                await _unitOfWork.CompleteAsync();
+
+                // Retornamos el resultado
+                return Ok($"Se agregó la factura para el cliente {factura.Persona.Nombre}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Ocurrió un error al agregar la factura: {ex.Message}");
+            }
         }
 
-        // Asignar la persona a la factura
-        factura.Persona = persona;
-
-        // Agregamos la factura
-        var facturaAgregada = await _unitOfWork.Facturas.AddAsync(factura);
-
-        if (facturaAgregada == null)
+        //PUT: api/Factura/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutFactura(int id, Factura factura)
         {
-            return BadRequest("Error al agregar la factura.");
+            if (id != factura.IdFactura)
+            {
+                return BadRequest();
+            }
+
+            _unitOfWork.Facturas.Update(factura);
+
+            try
+            {
+                await _unitOfWork.CompleteAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!await FacturaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok($"Se actualizó la factura con ID {id}");
         }
 
-        // Intentamos guardar los cambios
-        await _unitOfWork.CompleteAsync();
+        // DELETE: api/Factura/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFactura(int id)
+        {
+            var factura = await _unitOfWork.Facturas.GetByIdAsync(id);
+            if (factura == null)
+            {
+                return NotFound();
+            }
 
-        // Retornamos el resultado
-        return Ok($"Se agregó la factura para el cliente {factura.Persona.Nombre}");
-    }
-    catch (Exception ex)
-    {
-        return BadRequest($"Ocurrió un error al agregar la factura: {ex.Message}");
-    }
-}
+            _unitOfWork.Facturas.Remove(factura);
+            await _unitOfWork.CompleteAsync();
 
+            return Ok($"Se eliminó la factura con ID {id}");
+        }
+        
     }
 }
