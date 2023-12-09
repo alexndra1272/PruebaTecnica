@@ -45,7 +45,7 @@ namespace Frontend.Views
             var id = ((Button)sender).CommandParameter.ToString();
 
             // Mostrar ventana de editar persona
-            CrudPersona ventana = new CrudPersona(id);
+            CrudPersona ventana = new CrudPersona();
             FramePersona.Content = ventana;
             ventana.Titulo.Text = "Editar persona";
 
