@@ -50,6 +50,33 @@ public class FacturaRepository : GenericRepository<Factura>, IFacturaRepository
         }
     }
 
+	public async Task<IEnumerable<FacturaDTO>> GetFacturasByPersonaAsync(string searchTerm)
+	{
+		try
+		{
+			var facturas = await dbSet
+				.Include(f => f.Persona)
+				.Where(f => EF.Functions.Like(f.Persona.Nombre, $"%{searchTerm}%") || EF.Functions.Like(f.Persona.ApellidPaterno, $"%{searchTerm}%") 
+				|| EF.Functions.Like(f.Persona.ApellidMaterno, $"%{searchTerm}%") || EF.Functions.Like(f.Persona.Identificacion, $"%{searchTerm}%"))
+				.ToListAsync();
+
+			var facturasDto = facturas.Select(factura => new FacturaDTO
+			{
+				IdFactura = factura.IdFactura,
+				Fecha = factura.Fecha,
+				Monto = factura.Monto,
+				IdPersona = factura.IdPersona,
+				NombrePersona = factura.Persona.Nombre +" " + factura.Persona.ApellidPaterno
+			});
+
+			return facturasDto;
+		}
+		catch (Exception ex)
+		{
+			logger.LogError($"Error al obtener los registros de {typeof(Factura).Name}: {ex.Message}");
+			return new List<FacturaDTO>();
+		}
+	}
 
 }
 
