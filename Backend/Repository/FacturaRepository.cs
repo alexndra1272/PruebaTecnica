@@ -2,6 +2,9 @@
 using Backend.Data.Models;
 using Backend.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using Backend.Data.DTOs;
 
 
 
@@ -20,21 +23,31 @@ public class FacturaRepository : GenericRepository<Factura>, IFacturaRepository
 		this.logger = logger;
 		this.dbSet = context.Set<Factura>();
 	}
-	public async Task<IEnumerable<Factura>> GetFacturasWithDetailsAsync()
-	{
-		try
-		{
-			return await dbSet
-				.Include(f => f.Persona)
-				.ToListAsync();
-		}
-		catch (Exception ex)
-		{
-			logger.LogError($"Error al obtener los registros de {typeof(Factura).Name}: {ex.Message}");
-			return new List<Factura>(); // Puedes devolver una lista vacía o manejar el error según sea necesario
-		}
-	}
+    public async Task<IEnumerable<FacturaDTO>> GetFacturasWithDetailsAsync()
+    {
+        try
+        {
+            var facturas = await dbSet
+                .Include(f => f.Persona)
+            .ToListAsync();
 
+            var facturasDto = facturas.Select(factura => new FacturaDTO
+            {
+                IdFactura = factura.IdFactura,
+                Fecha = factura.Fecha,
+                Monto = factura.Monto,
+                IdPersona = factura.IdPersona,
+                NombrePersona = factura.Persona.Nombre +" " + factura.Persona.ApellidPaterno
+            });
+
+            return facturasDto;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError($"Error al obtener los registros de {typeof(Factura).Name}: {ex.Message}");
+            return new List<FacturaDTO>();
+        }
+    }
 
 }
 
