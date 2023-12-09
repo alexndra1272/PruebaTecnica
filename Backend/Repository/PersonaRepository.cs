@@ -19,16 +19,18 @@ namespace Backend.Repository
             this.dbSet = context.Set<Persona>();
         }
 
-        public async Task<Persona?> GetPersonaByIdentificacionorNameAsync(string identificacion, string nombre)
+        public async Task<List<Persona>> GetPersonaByIdentificacionorNameAsync(string searchTerm)
         {
             try
             {
-                return await dbSet.Where(p => EF.Functions.Like(p.Identificacion, $"%{identificacion}%") || EF.Functions.Like(p.Nombre, $"%{nombre}%")).ToListAsync();
+                return await dbSet
+                    .Where(p => EF.Functions.Like(p.Identificacion, $"%{searchTerm}%") || EF.Functions.Like(p.Nombre, $"%{searchTerm}%"))
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
-                logger.LogError($"Error al obtener el registro con identificacion o nombre {identificacion} de {typeof(Persona).Name}: {ex.Message}");
-                return null;
+                logger.LogError($"Error al obtener los registros con identificación o nombre que contienen '{searchTerm}' de {typeof(Persona).Name}: {ex.Message}");
+                return new List<Persona>(); // Puedes devolver una lista vacía o manejar el error según sea necesario
             }
         }
 

@@ -31,7 +31,7 @@ namespace Backend.Controllers
         [HttpGet("{identificacion}")]
         public async Task<ActionResult<Persona>> GetPersona(string identificacion)
         {
-            var persona = await _unitOfWork.Personas.GetPersonaByIdentificacionorNameAsync(identificacion, identificacion);
+            var persona = await _unitOfWork.Personas.GetPersonaByIdentificacionorNameAsync(identificacion);
 
             if (persona == null)
             {

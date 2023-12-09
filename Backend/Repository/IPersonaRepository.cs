@@ -5,7 +5,7 @@ namespace Backend.Repository;
 
 public interface IPersonaRepository : IGenericRepository<Persona>
 {
-    Task<Persona?> GetPersonaByIdentificacionorNameAsync(string identificacion, string nombre);
+    Task<List<Persona?>> GetPersonaByIdentificacionorNameAsync(string searchTerm);
     Task<Persona?> DeletePersonaByIdentificacion(string identificacion);
 }
 
