@@ -63,6 +63,33 @@ namespace Frontend.Views
         }
         private void BtnEliminarFact_Click(object sender, RoutedEventArgs e)
         {
+            // Obtener el id de la factura seleccionada
+            var id = ((Button)sender).CommandParameter.ToString();
+
+            // Mostrar ventana de eliminar factura
+            CrudFactura ventana = new CrudFactura();
+            FrameFactura.Content = ventana;
+            ventana.Titulo.Text = "Eliminar factura";
+
+            // Asignar el id a la variable global
+            ventana.idFactura = Int32.Parse(id);
+
+            // Obtener la factura seleccionada
+            Facturas factura = (Facturas)DatosFactura.SelectedItem;
+
+            // Asignar los valores a los campos
+            ventana.tboxMonto.Text = factura.Monto.ToString();
+            ventana.Fecha.SelectedDate = factura.Fecha;
+            ventana.tboxMonto.Text = factura.Monto.ToString();
+            ventana.CboxPersona.Text = factura.NombrePersona;
+
+            // Hacer visible el botón de eliminar
+            ventana.BtnEliminar.Visibility = Visibility.Visible;
+
+            // Deshabilitar los campos
+            ventana.tboxMonto.IsEnabled = false;
+            ventana.Fecha.IsEnabled = false;
+            ventana.CboxPersona.IsEnabled = false;
             
         }
         private void BtnEditarFact_Click(object sender, RoutedEventArgs e)
