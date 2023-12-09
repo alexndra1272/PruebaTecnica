@@ -68,7 +68,7 @@ namespace Frontend.Views
             ventana.tboxid.IsEnabled = false;
 
             // Hacer visible el botón de actualizar
-            ventana.BtnActualizar.Visibility = Visibility.Visible;
+            ventana.BtnModificar.Visibility = Visibility.Visible;
 
             
 

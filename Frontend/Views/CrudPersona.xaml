@@ -136,6 +136,7 @@
                     Foreground="White"
                     FontSize="15"
                     FontWeight="DemiBold"/>
+            </Button>
         </Grid>
     </Border>
     
