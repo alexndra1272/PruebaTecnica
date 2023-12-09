@@ -102,19 +102,20 @@ namespace Frontend.Views
                 MessageBox.Show(response.StatusCode.ToString());
             }
         }
-    }
-    public void BtnEliminar_Click(object sender, RoutedEventArgs e)
-    {
-        // Enviar al backend
-        var response = client.DeleteAsync("persona/" + identificador).Result;
-        if (response.IsSuccessStatusCode)
+        public void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            Content = new Persona();
+            // Enviar al backend
+            var response = client.DeleteAsync("persona/" + identificador).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Content = new Persona();
+            }
+            else
+            {
+                MessageBox.Show(response.StatusCode.ToString());
+            }
+
         }
-        else
-        {
-            MessageBox.Show(response.StatusCode.ToString());
-        }
-        
     }
+    
 }
