@@ -41,6 +41,7 @@
                        Grid.Column="1"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
+                       x:Name="Titulo"
                        Grid.Row="1"
                        Grid.ColumnSpan="5"
                         FontSize="25"

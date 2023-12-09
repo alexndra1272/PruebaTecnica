@@ -38,7 +38,33 @@ namespace Frontend.Views
             // Llamada al método de carga después de que el control se ha cargado
             cargarPersonas();
         }
+        // Llamar a la ventana de edición
+        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            // Obtener el id de la persona seleccionada
+            var id = ((Button)sender).CommandParameter.ToString();
 
+            // Mostrar ventana de editar persona
+            CrudPersona ventana = new CrudPersona(id);
+            FramePersona.Content = ventana;
+            ventana.Titulo.Text = "Editar persona";
+
+            // Obtener la persona seleccionada
+            Personas persona = (Personas)DatosPersona.SelectedItem;
+
+            // Asignar los valores a los campos
+            ventana.tboxName.Text = persona.Nombre;
+            ventana.tboxApPat.Text = persona.ApellidPaterno;
+            ventana.tboxApMat.Text = persona.ApellidMaterno;
+            ventana.tboxid.Text = persona.Identificacion;
+
+            // Deshabilitar el campo de identificación
+
+            ventana.tboxid.IsEnabled = false;
+            
+
+
+        }
         void cargarPersonas()
         {
             HttpResponseMessage response = client.GetAsync("persona").Result;
