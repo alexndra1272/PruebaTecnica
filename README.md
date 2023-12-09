@@ -28,4 +28,4 @@ Agrega la siguiente cadena de conexión en el archivo `secrets.json`:
     "ConnectionStrings": {
         "DefaultConnection": "Data Source=data.db; Cache=Shared"
     }
-} ```
+}
