@@ -46,14 +46,14 @@ namespace Frontend.Views
         {
             // Obtener el id de la persona seleccionada
             var id = ((Button)sender).CommandParameter.ToString();
-            // Asignar el id a la variable global
-            idPersona = Int32.Parse(id);
+            
 
             // Mostrar ventana de editar persona
             CrudPersona ventana = new CrudPersona();
             FramePersona.Content = ventana;
             ventana.Titulo.Text = "Editar persona";
-
+            // Asignar el id a la variable global
+            ventana.idPersona = Int32.Parse(id);
             // Obtener la persona seleccionada
             Personas persona = (Personas)DatosPersona.SelectedItem;
 
