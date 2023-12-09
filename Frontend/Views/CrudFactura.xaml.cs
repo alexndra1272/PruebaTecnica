@@ -21,6 +21,17 @@ namespace Frontend.Views
     /// <summary>
     /// Lógica de interacción para CrudFactura.xaml
     /// </summary>
+    /// 
+    public class PersonaComboItem
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre; // Esto determina qué se mostrará en el ComboBox
+        }
+    }
     public partial class CrudFactura : Page
     {
         private readonly HttpClient client = new HttpClient();
@@ -36,7 +47,7 @@ namespace Frontend.Views
             );
 
             // Registra el evento Loaded
-            Loaded += CrudPersona_Loaded
+            Loaded += CrudPersona_Loaded;
 
         }
         private void CrudPersona_Loaded(object sender, RoutedEventArgs e)
@@ -49,14 +60,33 @@ namespace Frontend.Views
         {
             // Llamada a la API
             HttpResponseMessage response = client.GetAsync("persona").Result;
+
             // Verificar si la respuesta es exitosa
             if (response.IsSuccessStatusCode)
             {
                 // Obtener los datos del API y asignarlos a la propiedad Items
                 var personas = response.Content.ReadAsAsync<IEnumerable<Personas>>().Result;
-                // Asignar los datos en el DataGrid
-                CboxPersona.ItemsSource = personas;
+
+                // Crear objetos PersonaComboItem con Id y Nombre
+                var personasCombo = personas.Select(p => new PersonaComboItem { Id = p.IdPersona, Nombre = $"{p.Nombre} {p.ApellidPaterno}" });
+
+                // Asignar los datos al ComboBox
+                CboxPersona.ItemsSource = personasCombo;
+
+                // Asignar el primer elemento como seleccionado
+                CboxPersona.SelectedIndex = 0;
             }
+        }
+
+        private int ObtenerIdPersonaSeleccionada()
+        {
+            if (CboxPersona.SelectedItem is PersonaComboItem personaComboItem)
+            {
+                return personaComboItem.Id;
+            }
+
+            // En caso de que no haya una persona seleccionada, puedes devolver un valor predeterminado o lanzar una excepción según tus necesidades.
+            throw new InvalidOperationException("No se ha seleccionado ninguna persona.");
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
