@@ -19,7 +19,9 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Factura>>> GetFacturas()
         {
-            var facturas = await _unitOfWork.Facturas.GetAllAsync();
+            // Obtener las facturas con sus detalles
+            var facturas = await _unitOfWork.Facturas.GetFacturasWithDetailsAsync();
+
             return Ok(facturas);
         }
 
