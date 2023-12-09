@@ -5,6 +5,7 @@ namespace Backend.Repository;
 
 public interface IFacturaRepository : IGenericRepository<Factura>
 { 
+    Task<IEnumerable<Factura>> GetFacturasWithDetailsAsync();
 }
 
 
