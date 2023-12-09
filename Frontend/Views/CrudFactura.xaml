@@ -85,6 +85,7 @@
             <ComboBox 
                 Grid.Row="6"
                 Grid.Column="2"
+                x:Name="CboxPersona"
                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
                 ItemsSource="{Binding Items}" />
             <TextBlock Grid.Row="4"
