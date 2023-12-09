@@ -73,6 +73,37 @@ namespace Frontend.Views
             
 
         }
+
+        void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            // Obtener el id de la persona seleccionada
+            var ident = ((Button)sender).CommandParameter.ToString();
+
+            // Mostrar ventana de editar persona
+            CrudPersona ventana = new CrudPersona();
+            FramePersona.Content = ventana;
+            ventana.Titulo.Text = "Eliminar persona";
+            // Asignar el id a la variable global
+            ventana.identificador = ident;
+            // Obtener la persona seleccionada
+            Personas persona = (Personas)DatosPersona.SelectedItem;
+
+            // Asignar los valores a los campos
+            ventana.tboxName.Text = persona.Nombre;
+            ventana.tboxApPat.Text = persona.ApellidPaterno;
+            ventana.tboxApMat.Text = persona.ApellidMaterno;
+            ventana.tboxid.Text = persona.Identificacion;
+
+            // Deshabilitar los campos
+            ventana.tboxName.IsEnabled = false;
+            ventana.tboxApPat.IsEnabled = false;
+            ventana.tboxApMat.IsEnabled = false;
+            ventana.tboxid.IsEnabled = false;
+
+            // Hacer visible el botón de eliminar
+            ventana.BtnEliminar.Visibility = Visibility.Visible;
+
+        }
         void cargarPersonas()
         {
             HttpResponseMessage response = client.GetAsync("persona").Result;

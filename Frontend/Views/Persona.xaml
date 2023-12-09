@@ -196,7 +196,10 @@
                                             Click="BtnEditar_Click"
                                             CommandParameter="{Binding IdPersona}"
                                     />
-                                    <Button Content="Eliminar" />
+                                    <Button Content="Eliminar" 
+                                            Click="BtnEliminar_Click"
+                                            CommandParameter="{Binding Identificacion}"
+                                    />
                                     <!-- Otros botones o elementos según tus necesidades -->
                                 </StackPanel>
                             </DataTemplate>

@@ -27,6 +27,8 @@ namespace Frontend.Views
         HttpClient client = new HttpClient();
         // id de la persona a editar
         public int idPersona;
+        // identificador de la persona a eliminar
+        public string identificador;
         public CrudPersona()
         {
 
@@ -101,5 +103,18 @@ namespace Frontend.Views
             }
         }
     }
-
+    public void BtnEliminar_Click(object sender, RoutedEventArgs e)
+    {
+        // Enviar al backend
+        var response = client.DeleteAsync("persona/" + identificador).Result;
+        if (response.IsSuccessStatusCode)
+        {
+            Content = new Persona();
+        }
+        else
+        {
+            MessageBox.Show(response.StatusCode.ToString());
+        }
+        
+    }
 }
