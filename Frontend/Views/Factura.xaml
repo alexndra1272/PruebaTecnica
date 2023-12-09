@@ -174,9 +174,34 @@
           HorizontalGridLinesBrush="#65bafb"
           >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Width="50" Binding="{Binding IdFactura}" />
-                    <DataGridTextColumn Header="Fecha" Width="220" Binding="{Binding Fecha}" />
-                    <DataGridTextColumn Header="Monto" Width="190" Binding="{Binding Monto}" />
+                    <DataGridTextColumn Header="Id" Width="50" Binding="{Binding IdFactura}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Persona" Width="190" Binding="{Binding NombrePersona}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Fecha" Width="180" Binding="{Binding Fecha}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Monto" Width="80" Binding="{Binding Monto}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style>
+                                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                     <DataGridTemplateColumn Header="Opciones" Width="110">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

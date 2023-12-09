@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
 namespace Backend.Data.Models
 {
     public class Factura
@@ -10,6 +11,7 @@ namespace Backend.Data.Models
 		public int IdPersona { get; set; }
 
         // Propiedad de navegación
+        [JsonIgnore]
         public Persona? Persona { get; set; }
     }
 }

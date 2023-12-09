@@ -30,7 +30,6 @@
     <None Remove="UnitofWork\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Data\Models\" />
     <Folder Include="Controllers\" />
     <Folder Include="Repository\" />
