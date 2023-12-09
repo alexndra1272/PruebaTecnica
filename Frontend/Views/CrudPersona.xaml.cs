@@ -44,7 +44,7 @@ namespace Frontend.Views
         {
             Content = new Persona();
         }
-       private void BtnGuardar_Click(object sender, RoutedEventArgs e)
+        private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
             // Validar que los campos no estén vacíos
             if (tboxName.Text == "" || tboxApPat.Text == "" || tboxid.Text == "")
@@ -72,6 +72,34 @@ namespace Frontend.Views
                 MessageBox.Show(response.StatusCode.ToString());
             }
         }
+        public void BtnModificar_Click(object sender, RoutedEventArgs e)
+        {
+            // Validar que los campos no estén vacíos
+            if (tboxName.Text == "" || tboxApPat.Text == "")
+            {
+                MessageBox.Show("Favor de llenar todos los campos");
+                return;
+            }
 
+            // Crear objeto persona
+            Personas persona = new Personas();
+            persona.IdPersona = idPersona;
+            persona.Nombre = tboxName.Text;
+            persona.ApellidPaterno = tboxApPat.Text;
+            persona.ApellidMaterno = tboxApMat.Text;
+            persona.Identificacion = tboxid.Text;
+
+            // Enviar al backend
+            var response = client.PutAsJsonAsync("persona", persona).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Content = new Persona();
+            }
+            else
+            {
+                MessageBox.Show(response.StatusCode.ToString());
+            }
+        }
     }
+
 }
