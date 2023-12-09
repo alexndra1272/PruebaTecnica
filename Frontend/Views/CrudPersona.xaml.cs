@@ -90,7 +90,7 @@ namespace Frontend.Views
             persona.Identificacion = tboxid.Text;
 
             // Enviar al backend
-            var response = client.PutAsJsonAsync("persona", persona).Result;
+            var response = client.PutAsJsonAsync("persona/" + persona.IdPersona, persona).Result;
             if (response.IsSuccessStatusCode)
             {
                 Content = new Persona();
