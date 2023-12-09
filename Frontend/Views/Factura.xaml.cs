@@ -24,7 +24,7 @@ namespace Frontend.Views
             );
             // Registra el evento Loaded
             Loaded += Factura_Loaded;
-            
+
             InitializeComponent();
         }
         private void Factura_Loaded(object sender, RoutedEventArgs e)
@@ -52,6 +52,12 @@ namespace Frontend.Views
 
         private void BtnAgregarFact_Click(object sender, RoutedEventArgs e)
         {
+            // Mostrar ventana de agregar persona
+            CrudFactura ventana = new CrudFactura();
+            FrameFactura.Content = ventana;
+
+            // Hacer visible el botón de guardar
+            ventana.BtnGuardar.Visibility = Visibility.Visible;
 
         }
         private void BtnEliminarFact_Click(object sender, RoutedEventArgs e)
